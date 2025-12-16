@@ -1,0 +1,42 @@
+.container{
+    height: 90vh;
+    background-color: rgb(90, 150, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.box{
+    background-color: rgb(255, 255, 255);
+    height: 80svh;
+    width: 480px;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+   
+}
+.row{
+    display: flex;
+    gap: 1.2rem;
+    
+}
+.row1{
+    padding: 0.8rem 1.3rem;
+    outline: none;
+    border: 1px solid silver;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 400px; 
+    margin: 10 auto;
+     
+}
+.btnofform{
+width: 170px;
+background-color: #1877F2;
+padding: 20px 50px;
+color: white;
+border: none;
+border-radius: 10px;
+}
+
