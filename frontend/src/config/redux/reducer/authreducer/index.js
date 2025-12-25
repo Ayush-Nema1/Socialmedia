@@ -1,15 +1,19 @@
-import { loginUser, registerUser } from "../../action/authAction"
+import { getAboutUser, getAllUser, loginUser, registerUser } from "../../action/authAction"
 import { createSlice } from "@reduxjs/toolkit"
 const initialState = {
-    user:[],
+    user:null,
     isError: false,
     isSuccess : false,
     isLoading:false,
     isloggedIn: false,
+    isTokenthere:false,
     message:"",
     profileFetched:false,
     connections:[],
-    connectionRequest:[]
+    connectionRequest:[],
+    all_users:[],
+    all_profiles_fetched:false
+
 }
 
 const authSlice = createSlice({
@@ -19,6 +23,15 @@ const authSlice = createSlice({
         reset: ()=> initialState,
         handleLoginUser :(state)=>{
             state.message = "hello"
+        },
+        emptymessage:(state)=>{
+            state.message = ""
+        },
+        setTokenisthere:(state)=>{
+            state.isTokenthere = true
+        },
+        setTokenisnotthere:(state)=>{
+            state.isTokenthere = false
         }
     },
     extraReducers:(builder)=>{
@@ -36,8 +49,8 @@ const authSlice = createSlice({
         .addCase(loginUser.rejected,(state,action)=>{
             state.isLoading = false,
             state.isError = true,
-            state.isSuccess = true,
-            state.isloggedIn = true,
+            state.isSuccess = false,
+            state.isloggedIn = false,
             state.message = action.payload
         })
         .addCase(registerUser.pending,(state,action)=>{
@@ -48,7 +61,7 @@ const authSlice = createSlice({
             state.isLoading = false,
             state.isError = false,
 
-            state.message = "singn In"
+            state.message = "Please login"
         })
         .addCase(registerUser.rejected,(state,action)=>{
             state.isLoading = false,
@@ -56,6 +69,20 @@ const authSlice = createSlice({
 
             state.message = action.payload
         })
+        .addCase(getAboutUser.fulfilled , (state,action)=>{
+            state.isLoading = false;
+            state.isError  = false;
+            state.profileFetched= true;
+            state.user = action.payload;
+            
+        })
+        .addCase(getAllUser.fulfilled,(state,action)=>{
+            state.isLoading = false;
+            state.isError = false;
+            state.all_profiles_fetched = true;
+            state.all_users = action.payload
+        })
     }
 })
+export const {reset,emptymessage,setTokenisthere,setTokenisnotthere} = authSlice.actions;
 export default authSlice.reducer

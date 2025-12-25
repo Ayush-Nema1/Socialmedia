@@ -36,12 +36,15 @@ try {
 
 export const deletePost = async(req,res)=>{
     const {token,post_id} = req.body;
+   
     try {
         const user = await User.findOne({token}).select("id");
         if(!user){
             return res.status(404).json({message:"User not found"});
         }
         const post  = await Post.findOne({_id:post_id});
+        console.log(post_id);
+         console.log("i am the ",post)
         if(!post){
             return res.status(404).json({message: "Post not found"})
         }

@@ -40,3 +40,18 @@ border: none;
 border-radius: 10px;
 }
 
+
+
+.already{
+    margin-top: 15px;
+    display: flex;
+    gap: 5px;
+}
+.alr{
+    cursor: pointer;
+    color: #1877F2;
+    background: none;
+    outline: none;
+    border:none;
+    font-size: medium;
+}

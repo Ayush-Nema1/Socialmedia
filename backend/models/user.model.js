@@ -26,7 +26,7 @@ const userSchema = mongoose.Schema({
     },
     profilePicture:{
         type:String,
-        default:'default.png'
+        default:'uploads/default.jpg'
     },
     createdAt:{
         type:Date,
