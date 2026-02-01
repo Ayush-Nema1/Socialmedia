@@ -2,6 +2,7 @@ import User from "../models/user.model.js"
 import Profile from "../models/profile.model.js"
 import Post from "../models/posts.model.js"
 import bcrypt from "bcrypt";
+import Comment from "../models/comments.model.js";
 
 export const createPost = async(req,res)=>{
     const {token} = req.body;
@@ -73,7 +74,7 @@ export const commentPost = async (req,res)=>{
   const comment = new Comment({
     userId : user._id,
     postId : post_id,
-    comment : commentbody
+    body : commentbody
   })
   await comment.save();
   return res.status(200).json({message: "comment on post successfully"});
@@ -83,7 +84,7 @@ export const commentPost = async (req,res)=>{
 }
 
 export const get_comment_by_post = async(req,res)=>{
-  const {post_id} = req.body;
+  const {post_id} = req.query;
   try {
     const post = await Post.findOne({_id : post_id});
 
@@ -94,7 +95,7 @@ export const get_comment_by_post = async(req,res)=>{
     const comments = await Comment.find({ postId: post_id })
       .populate('userId', 'name username profilePicture');
 
-    return res.json({ comments });
+    return res.json( comments.reverse() );
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
@@ -125,7 +126,9 @@ export const delete_comment_of_user = async(req,res)=>{
 export const increment_like = async(req,res)=>{
   const {post_id} = req.body;
   try {
-    const post  = await Post.findOne({post_id});
+    console.log("iam like");
+    const post  = await Post.findOne({_id:post_id});
+    console.log(post);
     if(!post){
       return res.status(404).json({messag: "Post not found"});
     }

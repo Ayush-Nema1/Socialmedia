@@ -4,6 +4,7 @@
 }
 .feedcontainer{
     flex: 0.6;
+    padding-inline: 0.8rem;
 }
 .homecontainer_left{
     flex:0.2;
@@ -11,12 +12,15 @@
     flex-direction: column;
     gap:1.2rem;
     align-items: start;
+    border-right: 1px solid lightgray ;
     
     
 }
+
 .extracontainer{
     flex:0.2;
-    
+    border-left: 1px solid lightgray;
+    padding-left: 1.2rem;
 }
 .sidebaroption{
     display: flex;

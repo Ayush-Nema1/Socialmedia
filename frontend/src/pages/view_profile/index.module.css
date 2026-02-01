@@ -1,0 +1,50 @@
+.userProifileContainer{
+    padding: 1.3rem;
+    background: rgb(230, 230, 230);
+}
+.backDropContainer{
+    width: 100%;
+    height:30vh;
+    background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3xYE5nC-FnEbS9cBmttUHND2fjD_C-C09JA&s");
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    border-radius: 20px;
+}
+.backDropContainer img{
+ width: 10em;
+ height: 10em;
+ 
+ object-fit: cover;
+ border-radius: 50%;
+ position: absolute;
+ bottom: -25%;
+ left: 5px;
+}
+.profileContainer_details{
+    padding-top:6.6rem ;
+}
+.card{
+    display: flex;
+    align-items: center;
+    gap: 1.4rem;
+}
+.card_profilecontainer{
+    display: flex;
+}
+.card_profilecontainer img{
+    width: 3.4rem;
+    height: auto;
+    height: 3.4rem;
+    object-fit: cover;
+}
+.connectbtn{
+    padding-inline :0.8rem;
+    padding-block:0.3rem ;
+    background: rgba(3,93,183,0.905);
+    outline:none;
+    border:none;
+    color:white;
+    border-radius: 10px;;
+    cursor: pointer;
+}

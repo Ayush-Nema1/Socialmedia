@@ -102,8 +102,79 @@ border-radius: 50%;
     align-items: center;
     gap:0.6rem;
     justify-content: center;
+    cursor: pointer;
 }
 .singleoption svg{
 height:100% ;
 width: 1.8rem;
+}
+.commentsContainer{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top : 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+.allcomments{
+    width: 40vw;
+    height: 80vh;
+    background: white;
+    border-radius: 10px ;
+    position: relative;
+    padding: 1.4rem;
+}
+.postComment{
+    position: absolute;
+    bottom: 1.2rem;
+      left: 1.2rem;
+      width: 90%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.2rem;
+}
+.postComment>input{
+    flex: 0.9;
+    padding-inline: 1.5rem;
+    padding-block: 1.2rem;
+    border:none;
+    background-color: rgb(228,228,228);
+    border-radius: 10px;
+     
+}
+.commentbtn{
+    flex: 0.1;
+    width: fit-content;
+    padding: 1.2rem;
+    background: #ff1fd6;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+    cursor: pointer;
+    
+}
+.singlecomment{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.2rem;
+}
+ .profilecontainercomment{
+    display: flex;
+     gap: 1rem;
+     
+     align-items: center;
+ }
+ .userinfo{
+    display: flex;
+    flex-direction: column;
+ }
+.profilecontainercomment>img{
+    height: 3.2rem;
+    border-radius: 50%;
 }

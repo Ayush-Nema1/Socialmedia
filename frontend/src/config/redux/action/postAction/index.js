@@ -56,3 +56,52 @@ export const deletePost = createAsyncThunk(
         }
     }
 )
+export const incrementPostlike = createAsyncThunk(
+    "post/incrementLike",
+    
+    async(post,thunkAPI)=>{
+        try{
+    
+            const response = await clientServer.post('/like',{
+            post_id: post.post_id
+        })
+        return thunkAPI.fulfillWithValue(response.data);
+    }catch(error){
+      return thunkAPI.rejectWithValue(error.response.data)
+
+    }
+}
+)
+export const getAllComments = createAsyncThunk(
+    "post/getAllComments",
+    async(postData, thunkAPI)=>{
+        try{
+         const response = await clientServer.get("/get_comments",{
+            params:{
+                post_id:postData.post_id
+            }
+         })
+         return thunkAPI.fulfillWithValue({
+            comments: response.data,
+            post_id:postData.post_id
+         })
+        }catch{
+          return thunkAPI.rejectWithValue(error.response.data)  
+        }
+    }
+)
+export const postComment = createAsyncThunk(
+    "post/postComment",
+    async(commentData,thunkAPI)=>{
+        try{
+        const response = await clientServer.post("/comment",{
+            token:localStorage.getItem("token"),
+            post_id:commentData.post_id,
+            commentbody:commentData.body
+        });
+        return thunkAPI.fulfillWithValue(response.data)
+        }catch(error){
+         return thunkAPI.rejectWithValue(error.response.data) 
+        }
+    }
+)

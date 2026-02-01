@@ -82,6 +82,7 @@ const authSlice = createSlice({
             state.all_profiles_fetched = true;
             state.all_users = action.payload
         })
+        
     }
 })
 export const {reset,emptymessage,setTokenisthere,setTokenisnotthere} = authSlice.actions;
