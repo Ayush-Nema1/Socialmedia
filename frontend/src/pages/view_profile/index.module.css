@@ -1,6 +1,9 @@
 .userProifileContainer{
     padding: 1.3rem;
-    background: rgb(230, 230, 230);
+    background: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
 }
 .backDropContainer{
     width: 100%;
@@ -12,8 +15,8 @@
     border-radius: 20px;
 }
 .backDropContainer img{
- width: 10em;
- height: 10em;
+ width: 8em;
+ height: 8em;
  
  object-fit: cover;
  border-radius: 50%;
@@ -22,7 +25,7 @@
  left: 5px;
 }
 .profileContainer_details{
-    padding-top:6.6rem ;
+    padding-top:4rem ;
 }
 .card{
     display: flex;
@@ -31,6 +34,7 @@
 }
 .card_profilecontainer{
     display: flex;
+    margin-top: 0.4rem;
 }
 .card_profilecontainer img{
     width: 3.4rem;
@@ -38,7 +42,7 @@
     height: 3.4rem;
     object-fit: cover;
 }
-.connectbtn{
+.connetbtn{
     padding-inline :0.8rem;
     padding-block:0.3rem ;
     background: rgba(3,93,183,0.905);
@@ -47,4 +51,21 @@
     color:white;
     border-radius: 10px;;
     cursor: pointer;
+   
+}
+
+.wrokhistorycontainer{
+    display: flex;
+    gap:1.4rem;
+    padding-top: 1.4rem;
+    width: 100%;
+    flex-wrap: wrap;
+
+}
+.workHistoryCArd{
+    min-width: fit-content;
+    padding-inline: 2.5rem;
+    padding-block: 1rem;
+    border-radius: 10px;
+    box-shadow: 10px 10px 15px rgb(173, 173, 173);
 }

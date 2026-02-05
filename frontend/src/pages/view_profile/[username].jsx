@@ -8,7 +8,7 @@ import { getAllPosts } from '@/config/redux/action/postAction';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-
+import { getConnectionRequest,sendConnectionRequest } from '@/config/redux/action/authAction';
 
 
 
@@ -23,6 +23,8 @@ const authState = useSelector((state) => state.auth)
 const [userPosts,setuserPosts] = useState([]);
 
 const[isCurrentUserInconnection,setisCurrentUserInconnection] = useState(false);
+const[isConnectionnull,setisCurrentUserInconnectionnull] = useState(true)
+
 
 useEffect(() => {
   getUserPost();
@@ -45,6 +47,11 @@ useEffect(()=>{
 console.log(authState.connections, userProfile.userId._id)
 if(authState.connections.some(user=>user.connectionId_.id === userProfile.userId._id)){
   setisCurrentUserInconnection(true)
+
+  if(authState.connections.find(user=>user.connectionId._ === userProfile.userId_.id).status_accepted === true){
+    setisCurrentUserInconnectionnull(false);
+  }
+
 }
 },[authState.connections])
 
@@ -63,13 +70,28 @@ if(authState.connections.some(user=>user.connectionId_.id === userProfile.userId
               <h2>{userProfile.userId.name}</h2>
               <p style={{color:"gray"}}>@{userProfile.userId.username}</p>
               </div>
-              {isCurrentUserInconnection ? <button className={styles.connetbtn}>connected </button>: <button className={styles.connetbtn} onClick={()=>{
+
+            <div style={{display: "flex" , alignItems: "center" ,gap :"1.2rem" , marginTop: "1.2rem" }} >
+
+            
+              {isCurrentUserInconnection ? <button className={styles.connetbtn} > {isConnectionnull ? "Pending" : "connected " }   </button> : <button className={styles.connetbtn} onClick={()=>{
               dispatch(sendConnectionRequest({token:localStorage.getItem("token"),user_id: userProfile.userId._id}))
-             }}></button>
+             }}> {isConnectionnull ? "Pending" : "connected " }</button>
             }
-            <div>
-              <p>{userProfile.bio}</p>
+
+            <div style={{cursor:"pointer"}}    onClick = {async()=>{
+              const response = await clientServer.get(`/user/dowmload_resume?id=${userProfile.userId._id}`);
+             window.open(`${base_URL}/uploads/${response.data.message}`, "_blank");
+
+            }}>
+              
+              <svg style={{width:"1.2rem"}} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+  <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
+</svg>
+</div>
+            
             </div>
+            
              
             </div>
             <div style={{flex:"0.2"}}>
@@ -80,11 +102,11 @@ if(authState.connections.some(user=>user.connectionId_.id === userProfile.userId
                     <div className={styles.card}>
                       <div className={styles.card_profilecontainer}>
 {post.media 
- ? <img src={`${base_URL}/${post.media}`} alt="img" />
+ ? <img src={`${base_URL}/uploads/${post.media}`} />
  : <div style={{width:"3.4rem",height:"3.4rem"}}></div>
 }
                       </div>
-                      <p>{post.body}</p>
+                      <p style={{fontSize:"small"}} >{post.body}</p>
                       </div>
                       </div>
                 )
@@ -92,9 +114,27 @@ if(authState.connections.some(user=>user.connectionId_.id === userProfile.userId
             </div>
           </div>
          </div>
+
+         <div className="userWorkHistry">
+         <h4>Work History</h4>
+         <div className={styles.wrokhistorycontainer}>
+          {
+            userProfile.pastWork.map((work,index)=>{
+              return(
+                <div key={index} className={styles.workHistoryCArd}>
+                 <p style={{fontWeight:"bold",display: "flex",alignItems:"center" ,gap:"0.8rem"}}> {work.company} - {work.position} </p>
+                  <p> {work.years} </p>
+                  </div>
+                )
+            })
+          }
+      
+          
+         </div>
+         </div>
         </div>
 
-         <div>{userProfile.userId.username}</div>
+       
   </DashboardLayout>
   </Userlayout>
 

@@ -13,7 +13,7 @@ const convertUserDataToPDF = (userData) => {
   const outputPath = crypto.randomBytes(32).toString("hex") + ".pdf";
   const stream = fs.createWriteStream("uploads/" + outputPath);
   doc.pipe(stream);
-  doc.image(`uploads/${userData.userId.profilePicture}`, {
+  doc.image(`${userData.userId.profilePicture}`, {
     align: "center",
     width: "100",
   });
@@ -164,10 +164,22 @@ export const getAllUserProfile = async (req, res) => {
 export const downloadProfile = async (req, res) => {
   const user_id = req.query.id;
   try {
+        if (!user_id) {
+      return res.status(400).json({ message: "User id is required" });
+    }
+
     const userProfile = await Profile.findOne({ userId: user_id }).populate(
       "userId",
       "name username email profilePicture"
     );
+
+         if (!userProfile) {
+      return res.status(404).json({
+        message: "Profile not found for this user",
+      });
+    }
+
+
     let a = await convertUserDataToPDF(userProfile);
     return res.json({ message: a });
   } catch (error) {
