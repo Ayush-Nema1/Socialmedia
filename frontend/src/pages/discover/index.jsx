@@ -22,7 +22,7 @@ export default function Discover() {
         <div>
       <h1>Discover</h1>
       <div className={styles.alluserProfile}>
-        {authState.all_profiles_fetched && authState.all_users.profiles.map((user)=>{
+        {authState.all_profiles_fetched && authState.all_users?.profiles?.map((user)=>{
          return(
           <div onClick={()=>{
             router.push(`/view_profile/${user.userId.username}`)

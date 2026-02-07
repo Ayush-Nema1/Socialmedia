@@ -220,7 +220,7 @@ export const sendConnectionRequest = async (req, res) => {
 };
 
 export const getmyConnectionRequests = async (req, res) => {
-  const { token } = req.body;
+  const { token } = req.query;
   try {
     const user = User.findOne({token});
     if(!user){
@@ -236,14 +236,14 @@ export const getmyConnectionRequests = async (req, res) => {
 };
 
 export const whatAreMyConnections = async(req,res)=>{
-    const { token } = req.body;
+    const { token } = req.query;
     try {
-      const user = User.findOne({token});
+      const user = await User.findOne({token});
     if(!user){
       return res.status(404).json({message:"User not found"});
     }
     const connections = await ConnectionRequest.find({connectionId: user._id}).populate('userId','name username email profilePicture');
-    return res.json(connections);
+    return res.json({connections});
 
     } catch (error) {
      return res.status(500).json({ message: error.message });

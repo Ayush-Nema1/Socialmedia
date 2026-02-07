@@ -14,8 +14,8 @@ export default function DashboardLayout({ children }) {
       router.push("/login");
     }
     dispatch(setTokenisthere());
-  });
-     console.log(authState.all_users);
+  },[]);
+    //  console.log(authState.all_users);
   
   return (
     <div className="container">
@@ -87,10 +87,10 @@ export default function DashboardLayout({ children }) {
           <h3 style={{width:"80%"}}>Top Profiles</h3>
        
 
-          {authState.all_profiles_fetched && authState.all_users.profiles.map((profile)=>{
+          {authState.all_profiles_fetched && authState?.all_users?.profiles.map((profile)=>{
             return(
               <div  key={profile.id} className={styles.extracontainer_profile} style={{width:"80%"}} >
-                <p>{profile.userId.name}</p>
+                <p>{profile?.userId?.name}</p>
 
               </div>
             )

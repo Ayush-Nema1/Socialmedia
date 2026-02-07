@@ -1,0 +1,71 @@
+.userProifileContainer{
+    padding: 1.3rem;
+    background: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+.backDropContainer{
+    width: 100%;
+    height:30vh;
+    background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3xYE5nC-FnEbS9cBmttUHND2fjD_C-C09JA&s");
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    border-radius: 20px;
+}
+.backDropContainer img{
+ width: 8em;
+ height: 8em;
+ 
+ object-fit: cover;
+ border-radius: 50%;
+ position: absolute;
+ bottom: -25%;
+ left: 5px;
+}
+.profileContainer_details{
+    padding-top:4rem ;
+}
+.card{
+    display: flex;
+    align-items: center;
+    gap: 1.4rem;
+}
+.card_profilecontainer{
+    display: flex;
+    margin-top: 0.4rem;
+}
+.card_profilecontainer img{
+    width: 3.4rem;
+    height: auto;
+    height: 3.4rem;
+    object-fit: cover;
+}
+.connetbtn{
+    padding-inline :0.8rem;
+    padding-block:0.3rem ;
+    background: rgba(3,93,183,0.905);
+    outline:none;
+    border:none;
+    color:white;
+    border-radius: 10px;;
+    cursor: pointer;
+   
+}
+
+.wrokhistorycontainer{
+    display: flex;
+    gap:1.4rem;
+    padding-top: 1.4rem;
+    width: 100%;
+    flex-wrap: wrap;
+
+}
+.workHistoryCArd{
+    min-width: fit-content;
+    padding-inline: 2.5rem;
+    padding-block: 1rem;
+    border-radius: 10px;
+    box-shadow: 10px 10px 15px rgb(173, 173, 173);
+}

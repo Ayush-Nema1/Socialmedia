@@ -8,7 +8,7 @@ import { getAllPosts } from '@/config/redux/action/postAction';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { getConnectionRequest,sendConnectionRequest } from '@/config/redux/action/authAction';
+import { getConnectionRequest,getMyConnectionRequests,sendConnectionRequest } from '@/config/redux/action/authAction';
 
 
 
@@ -23,7 +23,7 @@ const authState = useSelector((state) => state.auth)
 const [userPosts,setuserPosts] = useState([]);
 
 const[isCurrentUserInconnection,setisCurrentUserInconnection] = useState(false);
-const[isConnectionnull,setisCurrentUserInconnectionnull] = useState(true)
+const[isConnectionnull,setisCurrentUserInconnectionnull] = useState(false)
 
 
 useEffect(() => {
@@ -34,6 +34,7 @@ useEffect(() => {
 const getUserPost = async()=>{
   await dispatch(getAllPosts());
   await dispatch(getConnectionRequest({token:localStorage.getItem("token")}));
+  await dispatch(getMyConnectionRequests({token:localStorage.getItem("token")}))
 }
 
 useEffect(()=>{
@@ -44,16 +45,26 @@ useEffect(()=>{
 },[postReducer.posts])
  
 useEffect(()=>{
+
+
 console.log(authState.connections, userProfile.userId._id)
-if(authState.connections.some(user=>user.connectionId_.id === userProfile.userId._id)){
+if(authState.connections.some(user=>user.connectionId._id === userProfile.userId._id)){
   setisCurrentUserInconnection(true)
 
-  if(authState.connections.find(user=>user.connectionId._ === userProfile.userId_.id).status_accepted === true){
+  if(authState.connections.find(user=>user.connectionId._id === userProfile.userId._id).status_accepted === true){
     setisCurrentUserInconnectionnull(false);
   }
 
 }
-},[authState.connections])
+if(authState.connectionRequest.some(user=>user.userId._id === userProfile.userId._id)){
+  setisCurrentUserInconnection(true)
+
+  if(authState.connectionRequest.find(user=>user.userId._id === userProfile.userId._id).status_accepted === true){
+    setisCurrentUserInconnectionnull(false);
+  }
+
+}
+},[authState.connections,authState.connectionRequest])
 
     return (
       <Userlayout>
@@ -76,7 +87,10 @@ if(authState.connections.some(user=>user.connectionId_.id === userProfile.userId
             
               {isCurrentUserInconnection ? <button className={styles.connetbtn} > {isConnectionnull ? "Pending" : "connected " }   </button> : <button className={styles.connetbtn} onClick={()=>{
               dispatch(sendConnectionRequest({token:localStorage.getItem("token"),user_id: userProfile.userId._id}))
-             }}> {isConnectionnull ? "Pending" : "connected " }</button>
+              setisCurrentUserInconnection(true);
+              setisCurrentUserInconnectionnull(true);
+               
+             }}> connect </button>
             }
 
             <div style={{cursor:"pointer"}}    onClick = {async()=>{

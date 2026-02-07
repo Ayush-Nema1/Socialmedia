@@ -26,7 +26,7 @@ function Navbar() {
           <div style={{ display: "flex", flexDirection: "row", gap: "20px",flexWrap: "nowrap",cursor:"pointer" }}>
             
                 <p style={{fontSize:"1.3rem",pointer:"cursor"}}>Hey, {user.userId?.name}</p>
-                <p style={{ fontWeight: "bold",fontSize:"1.2rem" }}>Profile</p>
+                <p style={{ fontWeight: "bold",fontSize:"1.2rem" }} onClick={()=> router.push("/profile")} >Profile</p>
               
               
                 <p onClick={()=>{
