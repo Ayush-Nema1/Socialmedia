@@ -52,7 +52,7 @@ function DashBoard() {
             <div className={styles.createpostContainer}>
               <img
                 className={styles.userprofile}
-                src={`${base_URL}/${authState.user.userId.profilePicture}`}
+                src={`${base_URL}/uploads/${authState.user.userId.profilePicture}`}
                 alt=""
               />
               <textarea
@@ -100,7 +100,7 @@ function DashBoard() {
                     <div className={styles.singlecardprofile}>
                       <img
                         className={styles.profileimg}
-                        src={`${base_URL}/${post.userId.profilePicture}`}
+                        src={`${base_URL}/uploads/${post.userId.profilePicture}`}
                         alt=""
                       />
                       <div>

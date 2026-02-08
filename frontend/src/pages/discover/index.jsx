@@ -27,7 +27,8 @@ export default function Discover() {
           <div onClick={()=>{
             router.push(`/view_profile/${user.userId.username}`)
           }} key={user._id} className={styles.userCard}>
-            <img src={`${base_URL}/${user.userId.profilePicture}`} alt="profilepic" />
+            <img src={`${base_URL}/uploads/${user.userId.profilePicture}`} alt="profilepic" />
+            {console.log(user.userId.profilePicture)}
             <div>
             <h1>{user.userId.name}</h1>
             <p>{user.userId.username}</p>

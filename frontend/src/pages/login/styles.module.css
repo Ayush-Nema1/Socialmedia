@@ -1,57 +1,91 @@
-.container{
-    height: 90vh;
-    background-color: rgb(90, 150, 255);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f2f3f5;
+  padding: 15px;
+  
 }
-.box{
-    background-color: rgb(255, 255, 255);
-    height: 80svh;
-    width: 480px;
-    border-radius: 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
-   
-}
-.row{
-    display: flex;
-    gap: 1.2rem;
-    
-}
-.row1{
-    padding: 0.8rem 1.3rem;
-    outline: none;
-    border: 1px solid silver;
-    border-radius: 10px;
-    width: 100%;
-    max-width: 400px; 
-    margin: 10 auto;
-     
-}
-.btnofform{
-width: 170px;
-background-color: #1877F2;
-padding: 20px 50px;
-color: white;
-border: none;
-border-radius: 10px;
+
+.box {
+  width: 360px;
+    max-width: 90%;
+  padding: 24px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
 }
 
 
-
-.already{
-    margin-top: 15px;
-    display: flex;
-    gap: 5px;
+.box > p:first-child {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 18px;
+  color: #333;
 }
-.alr{
-    cursor: pointer;
-    color: #1877F2;
-    background: none;
-    outline: none;
-    border:none;
-    font-size: medium;
+
+.row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.row1 {
+  width: 100%;
+  padding: 11px 12px;
+  border-radius: 6px;
+  border: 1px solid #dcdcdc;
+  font-size: 14px;
+  outline: none;
+  margin-bottom: 1.1rem;
+}
+
+.row1:focus {
+  border-color: #4f46e5;
+}
+
+.btnofform {
+  width: 100%;
+  margin-top: 16px;
+  padding: 11px;
+  border: none;
+  border-radius: 6px;
+  background: #4f46e5;
+  cursor: pointer;
+}
+
+.btnofform p {
+  margin: 0;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.btnofform:hover {
+  background: #4338ca;
+}
+
+.already {
+  margin-top: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: #555;
+}
+
+.alr {
+  background: none;
+  border: none;
+  color: #4f46e5;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.alr:hover {
+  text-decoration: underline;
 }

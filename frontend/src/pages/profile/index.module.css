@@ -27,6 +27,30 @@
 .profileContainer_details{
     padding-top:4rem ;
 }
+
+.backdrop {
+  width: 8em;
+ height: 8em;
+ 
+ object-fit: cover;
+ border-radius: 50%;
+ position: absolute;
+ bottom: -25%;
+ left: 5px;
+ z-index: 5;
+ transition: all 0.45s;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ opacity: 0.0;
+}
+.backdrop:hover{
+    opacity: 0.8;
+      background-color: black;
+      cursor: pointer;
+      color: white;
+}
+
 .card{
     display: flex;
     align-items: center;
@@ -68,4 +92,33 @@
     padding-block: 1rem;
     border-radius: 10px;
     box-shadow: 10px 10px 15px rgb(173, 173, 173);
+}
+.nameEdit{
+    outline: none;
+    border-style: none;
+    padding-inline: 10px;
+    padding-block: 9px;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.connectionBtn{
+        padding-inline :0.8rem;
+    padding-block:0.3rem ;
+    background: rgba(3,93,183,0.905);
+    outline:none;
+    border:none;
+    color:white;
+    border-radius: 10px;;
+    cursor: pointer;
+    width: fit-content;
+}
+.txtarea{
+    outline: none;
+    border: none;
+    border-style: none;
+    padding-inline: 10px;
+    padding-block: 9px;
+    font-size: 0.87rem;
+    font-family: 'Lucida Sans';
+   
 }

@@ -88,6 +88,32 @@ export const uploadProfilePicture = async (req, res) => {
     return res.status(500).json({ message: error.message });
   }
 };
+// export const updateUserProfile = async (req, res) => {
+//   try {
+//     const { token, ...newUserData } = req.body;
+
+//     const user = await User.findOne({ token });
+//     if (!user) {
+//       return res.status(404).json({ message: "user not found" });
+//     }
+//     const { username, email } = newUserData;
+//     const exsitingUser = await User.findOne({ $or: [{ username }, { email }] });
+//     if (exsitingUser) {
+//       if (exsitingUser && String(exsitingUser._id) !== String(user._id)) {
+//         return res.status(400).json({ message: "User already exist" });
+//       }
+//       Object.assign(user, newUserData);
+//       await user.save();
+//       return res.json({ message: "userUpdated" });
+//     } else {
+//       return res.json({ message: "user not exist" });
+//     }
+//   } catch (error) {
+//     console.log("iam cakkl")
+//     return res.status(500).json({ message: error.message });
+//   }
+// };
+
 export const updateUserProfile = async (req, res) => {
   try {
     const { token, ...newUserData } = req.body;
@@ -96,26 +122,41 @@ export const updateUserProfile = async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: "user not found" });
     }
-    const { username, email } = newUserData;
-    const exsitingUser = await User.findOne({ $or: [{ username }, { email }] });
-    if (exsitingUser) {
-      if (exsitingUser || String(exsitingUser._id) !== String(user._id)) {
-        return res.status(500).json({ message: "User already exist" });
+
+    if (newUserData.username || newUserData.email) {
+      const existingUser = await User.findOne({
+        $or: [
+          newUserData.username ? { username: newUserData.username } : {},
+          newUserData.email ? { email: newUserData.email } : {},
+        ],
+      });
+
+      if (
+        existingUser &&
+        String(existingUser._id) !== String(user._id)
+      ) {
+        return res.status(400).json({ message: "User already exist" });
       }
-      Object.assign(user, newUserData);
-      await user.save();
-      return res.josn({ message: "userUpdated" });
-    } else {
-      return res.json({ message: "user not exist" });
     }
+
+   
+    Object.assign(user, newUserData);
+    await user.save();
+
+    return res.json({ message: "userUpdated" });
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
 };
 
+
+
+
+
+
 export const getUserAndProfile = async (req, res) => {
   try {
-    console.log("hii");
+   
     const { token } = req.query;
     const user = await User.findOne({ token });
 
@@ -140,11 +181,16 @@ export const updateProfileData = async (req, res) => {
     if (!userProfile) {
       return res.status(404).json({ message: "user not found" });
     }
-    const profile_to_update = await Profile.findOne({ userId: userProfile });
+    console.log( userProfile._id)
+    const profile_to_update = await Profile.findOne({ userId: userProfile._id });
+    console.log(profile_to_update)
+console.log("BODY:", newProfileData);
+
     Object.assign(profile_to_update, newProfileData);
     await profile_to_update.save();
     return res.json({ message: "Profile saved ccessfully" });
   } catch (error) {
+    console.log("i am error")
     return res.status(500).json({ message: error.message });
   }
 };
@@ -183,6 +229,7 @@ export const downloadProfile = async (req, res) => {
     let a = await convertUserDataToPDF(userProfile);
     return res.json({ message: a });
   } catch (error) {
+    
     return res.status(500).json({ message: error.message });
   }
 };
