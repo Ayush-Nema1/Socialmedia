@@ -17,3 +17,46 @@ border-radius: 50%;
     border-radius: 10px;
     cursor:  pointer;
 }
+
+
+
+@media only screen and (max-width: 600px) {
+  .usercard {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
+
+  .profilepicture img {
+    width: 4rem;
+    height: 4rem;
+    object-fit: cover;
+  }
+
+  .userInfo h3 {
+    font-size: 1.1rem;
+  }
+
+  .userInfo p {
+    font-size: 0.9rem;
+    color: gray;
+  }
+
+  .acceptbtn {
+    align-self: flex-end;
+    padding: 0.4rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .profilepicture img {
+    width: 5rem;
+    height: 5rem;
+  }
+
+  .usercard {
+    width: 100%;
+  }
+}

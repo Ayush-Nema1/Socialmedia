@@ -13,15 +13,18 @@ export default function Myconnection() {
   const dispatch = useDispatch();
   const authState = useSelector((state)=> state.auth)
   useEffect(()=>{
-     console.log("dispatching getMyConnectionRequests");
-    dispatch(getMyConnectionRequests({
+     console.log("profile==");
+
+
+
+     dispatch(getMyConnectionRequests({
       token:localStorage.getItem("token")
     }));
   },[]);
 
   useEffect(()=>{
     if(authState.connectionRequest.length != 0 ){
-      console.log(authState.connectionRequest)
+      console.log(authState.connectionRequest);
     }
   },[authState.connectionRequest])
   
@@ -32,7 +35,7 @@ export default function Myconnection() {
       <h1>My Connections</h1>
        {authState.connectionRequest.length === 0 && <h3>No coonection request pending</h3> }
 
-       {authState.connectionRequest != 0 && authState.connectionRequest.filter((connection)=> connection.status_accepted === null).map((user)=>{
+       {authState.connectionRequest !== 0 && authState.connectionRequest.filter((connection)=> connection.status_accepted === null).map((user)=>{
         return (
           
           <div onClick={()=>{
@@ -40,7 +43,11 @@ export default function Myconnection() {
           }} key ={user._id} className={styles.usercard}  >
              <div style={{display:"flex" , alignItems: "center",gap:"1.2rem",justifyContent:"space-between"}}>
              <div className={styles.profilepicture}>
-              <img src={`${base_URL}/${user.userId.profilePicture}`} alt="img" />
+              {console.log("hiiiiii")}
+              {console.log(user.userId.profilePicture)}
+
+              
+              <img src={`${base_URL}/uploads/${user.userId.profilePicture}`} alt="img" />
            </div>
              <div className={styles.userInfo} >
                <h3>{user.userId.name} </h3>
@@ -68,7 +75,8 @@ export default function Myconnection() {
           }} key ={index} className={styles.usercard}  >
              <div style={{display:"flex" , alignItems: "center",gap:"1.2rem",justifyContent:"space-between"}}>
              <div className={styles.profilepicture}>
-              <img src={`${base_URL}/${user.userId.profilePicture}`} alt="img" />
+               {console.log(user.userId.profilePicture)}
+              <img src={`${base_URL}/uploads/${user.userId.profilePicture}`} alt="img" />
            </div>
              <div className={styles.userInfo} >
                <h3>{user.userId.name} </h3>

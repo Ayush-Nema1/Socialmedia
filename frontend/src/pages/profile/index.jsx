@@ -1,4 +1,4 @@
-import { getAboutUser } from "@/config/redux/action/authAction";
+import { getAboutUser, getAllUser } from "@/config/redux/action/authAction";
 import DashboardLayout from "@/layout/dashboardlayout";
 import Userlayout from "@/layout/userlayout";
 import React, { useEffect, useState } from "react";
@@ -17,6 +17,25 @@ export default function Profilepage() {
 
   const [userProfile, setUserProfile] = useState({});
   const [userPosts, setuserPosts] = useState([]);
+
+  const [isModalopen, setisModalopen] = useState(false);
+  const [isModalopen2, setisModalopen2] = useState(false);
+
+  const [handlework, sethandlework] = useState({
+    company: "",
+    position: "",
+    years: "",
+  });
+  const [edu, setedu] = useState({ school: "", degree: "", fieldOfStudy: "" });
+
+  const handleWorkInputWork = (e) => {
+    const { name, value } = e.target;
+    sethandlework({ ...handlework, [name]: value });
+  };
+  const handleEducationInput = (e) => {
+    const { name, value } = e.target;
+    setedu({ ...edu, [name]: value });
+  };
 
   /* ================= FETCH USER ================= */
   useEffect(() => {
@@ -51,6 +70,7 @@ export default function Profilepage() {
     });
 
     dispatch(getAboutUser({ token: localStorage.getItem("token") }));
+    dispatch(getAllUser());
   };
 
   /* ================= UPDATE PROFILE DATA ================= */
@@ -171,14 +191,45 @@ export default function Profilepage() {
               <h4>Work History</h4>
 
               <div className={styles.wrokhistorycontainer}>
-                {userProfile?.pastWork?.map((work, index) => (
-                  <div key={index} className={styles.workHistoryCArd}>
-                    <p style={{ fontWeight: "bold" }}>
-                      {work.company} - {work.position}
-                    </p>
-                    <p>{work.years}</p>
-                  </div>
-                ))}
+                {userProfile?.pastWork?.map((work, index) => {
+                  return (
+                    <div key={index} className={styles.workHistoryCArd}>
+                      <p style={{ fontWeight: "bold" }}>
+                        {work.company} - {work.position}
+                      </p>
+                      <p>{work.years}</p>
+                    </div>
+                  );
+                })}
+                <button
+                  onClick={() => setisModalopen(true)}
+                  className={styles.addWorkbtn}
+                >
+                  Add work
+                </button>
+              </div>
+            </div>
+
+            <div className="userWorkHistry">
+              <h4>Education</h4>
+
+              <div className={styles.wrokhistorycontainer}>
+                {userProfile?.education?.map((work, index) => {
+                  return (
+                    <div key={index} className={styles.workHistoryCArd}>
+                      <p style={{ fontWeight: "bold" }}>
+                        {work.school} - {work.degree}
+                      </p>
+                      <p>{work.fieldOfStudy}</p>
+                    </div>
+                  );
+                })}
+                <button
+                  onClick={() => setisModalopen2(true)}
+                  className={styles.addWorkbtn}
+                >
+                  Add Education
+                </button>
               </div>
             </div>
 
@@ -191,6 +242,110 @@ export default function Profilepage() {
                 Update data
               </button>
             )}
+          </div>
+        )}
+
+        {isModalopen && (
+          <div
+            onClick={() => {
+              setisModalopen(false);
+            }}
+            className={styles.commentsContainer}
+          >
+            <div
+              onClick={(e) => {
+                e.stopPropagation();
+              }}
+              className={styles.allcomments}
+            >
+              <input
+                onChange={handleWorkInputWork}
+                name="company"
+                type="text"
+                placeholder="Enter works place"
+                className={styles.row1}
+              />
+              <input
+                onChange={handleWorkInputWork}
+                name="position"
+                type="text"
+                placeholder="Enter position"
+                className={styles.row1}
+              />
+              <input
+                onChange={handleWorkInputWork}
+                name="years"
+                type="number"
+                placeholder="Enter no. of years you work"
+                className={styles.row1}
+              />
+
+              <button
+                className={styles.connetbtn}
+                onClick={() => {
+                  setUserProfile({
+                    ...userProfile,
+                    pastWork: [...(userProfile.pastWork || []), handlework],
+                  });
+                  setisModalopen(false);
+                }}
+              >
+                {" "}
+                Add work
+              </button>
+            </div>
+          </div>
+        )}
+
+        {isModalopen2 && (
+          <div
+            onClick={() => {
+              setisModalopen2(false);
+            }}
+            className={styles.commentsContainer}
+          >
+            <div
+              onClick={(e) => {
+                e.stopPropagation();
+              }}
+              className={styles.allcomments}
+            >
+              <input
+                onChange={handleEducationInput}
+                name="school"
+                type="text"
+                placeholder="Enter School Name"
+                className={styles.row1}
+              />
+              <input
+                onChange={handleEducationInput}
+                name="degree"
+                type="text"
+                placeholder="Enter degreen you pursued"
+                className={styles.row1}
+              />
+              <input
+                onChange={handleEducationInput}
+                name="fieldOfStudy"
+                type="text"
+                placeholder="Enter the field you study in"
+                className={styles.row1}
+              />
+
+              <button
+                className={styles.connetbtn}
+                onClick={() => {
+                  setUserProfile({
+                    ...userProfile,
+                    education: [...(userProfile.education || []), edu],
+                  });
+                  setisModalopen2(false);
+                }}
+              >
+                {" "}
+                Add Education
+              </button>
+            </div>
           </div>
         )}
       </DashboardLayout>

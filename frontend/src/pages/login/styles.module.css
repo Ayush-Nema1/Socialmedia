@@ -15,7 +15,21 @@
   padding: 24px;
   background: #ffffff;
   border-radius: 10px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 13px 28px rgba(0, 0, 0, 0.6);
+   animation: floatBox 3.5s ease-in-out infinite;
+}
+
+
+@keyframes floatBox {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-9px);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
 
 
@@ -34,7 +48,7 @@
 }
 
 .row1 {
-  width: 100%;
+  width: 90%;
   padding: 11px 12px;
   border-radius: 6px;
   border: 1px solid #dcdcdc;
@@ -45,6 +59,7 @@
 
 .row1:focus {
   border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(68, 59, 255, 0.15);
 }
 
 .btnofform {

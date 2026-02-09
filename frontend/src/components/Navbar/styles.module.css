@@ -6,3 +6,30 @@
     align-items: center;
     justify-content: space-between;
 }
+@media only screen and (max-width: 600px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .navBar {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .navBarright {
+    display: flex;
+    gap: 0.8rem;
+  }
+
+  .navBarright p {
+    font-size: 0.9rem;
+    white-space: nowrap;
+  }
+
+  .h{
+    font-size: medium;
+  }
+  .navBarright p:first-child {
+    display: none;
+  }
+}

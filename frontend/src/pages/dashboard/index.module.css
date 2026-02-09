@@ -81,6 +81,7 @@ border-radius: 50%;
 .singlecardimg{
     width: 100%;
     padding-top: 0.6rem;
+    max-height: 60vh;
     height: fit-content;
     overflow: hidden;
 }
@@ -89,6 +90,9 @@ border-radius: 50%;
       height: auto;
       object-fit: cover;
       border-radius: 20px;  
+       max-height: 60vh;
+        object-fit: contain; 
+        border-radius: 20px;
 }
 .optionContainer{
     display: flex;
@@ -177,4 +181,51 @@ width: 1.8rem;
 .profilecontainercomment>img{
     height: 3.2rem;
     border-radius: 50%;
+}
+
+@media only screen and (max-width: 600px) {
+  .allcomments {
+    width: 95vw;
+    height: 90vh;
+    padding: 1rem;
+  }
+
+  .postComment {
+    width: 95%;
+    left: 0.5rem;
+  }
+
+  .commentbtn {
+    padding: 0.8rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+
+  .scrollcomponenet{
+    align-items: center;
+  }
+
+  .createpostContainer{
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .textareacontent{
+    width: 100%;
+  }
+
+  .singlecardprofile{
+    padding-right: 1rem;
+  }
+
+  .optionContainer{
+    gap: 1rem;
+    justify-content: space-around;
+  }
+
+  .singleoption svg{
+    width: 1.4rem;
+  }
 }

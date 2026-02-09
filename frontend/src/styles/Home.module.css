@@ -1,39 +1,115 @@
-.container{
-    font-family: "Poppins";
-    padding: 1.2rem;
+.container {
+  font-family: "Poppins", sans-serif;
+  min-height: 100vh;
+  padding: 1.2rem;
+  background: linear-gradient(
+    135deg,
+    #fff7ed 0%,
+    #ffffff 40%,
+    #f5f9ff 100%
+  );
 }
-.maincontainer{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 4rem;
-    padding-inline: 2rem;
-    height: 80vh;
-}
-.containerleft{
-    flex : 0.5;
 
+
+.maincontainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4rem;
+  padding-inline: 3rem;
+  height: 85vh;
 }
-.containerright{
-    flex : 0.5;
+
+.containerleft {
+  flex: 0.5;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
 }
-.containerleft > p:nth-child(1){
-    font-size: 3rem;
+
+.containerleft > p:nth-child(1) {
+  font-size: 3.2rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #1a1a1a;
 }
-.containerleft > p:nth-child(2){
-    color: #4d4d4d;
-    font-size: 1.8rem;
+
+.containerleft > p:nth-child(2) {
+  font-size: 1.6rem;
+  color: #4d4d4d;
+  max-width: 90%;
 }
-.buttonjoin{
-    width: fit-content;
-    cursor: pointer;
-    user-select: none;
-    transition: all 0.2s;
-    margin-top: 0.8rem;
-    font-size: 1.4rem;
-    background-color: rgb(255, 162, 21);
-    color:white;
-    padding-inline: 1.7rem;
-    border-radius: 20px;
-    padding-block: 0.7rem;
+
+
+.buttonjoin {
+  width: fit-content;
+  margin-top: 1.2rem;
+  padding: 0.8rem 2rem;
+  font-size: 1.3rem;
+  border-radius: 30px;
+  cursor: pointer;
+  user-select: none;
+  color: white;
+  background: linear-gradient(135deg, #ff9f1c, #ffb703);
+  box-shadow: 0 8px 20px rgba(255, 162, 21, 0.35);
+  transition: all 0.25s ease;
+}
+
+.buttonjoin:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 28px rgba(255, 162, 21, 0.45);
+}
+
+.buttonjoin:active {
+  transform: scale(0.97);
+}
+
+
+.containerright {
+  flex: 0.5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.containerright img {
+  height: 32vh;
+  animation: float 4s ease-in-out infinite;
+}
+
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+
+@media only screen and (max-width: 600px) {
+  .maincontainer {
+    flex-direction: column;
+    height: auto;
+    padding-top: 3rem;
+    gap: 2.5rem;
+  }
+
+  .containerleft > p:nth-child(1) {
+    font-size: 2.2rem;
+    text-align: center;
+  }
+
+  .containerleft > p:nth-child(2) {
+    font-size: 1.2rem;
+    text-align: center;
+  }
+
+  .buttonjoin {
+    align-self: center;
+  }
 }

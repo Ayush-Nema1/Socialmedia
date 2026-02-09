@@ -32,7 +32,7 @@ reducers:{
             state.isLoading = false;
             state.isError = false;
             state.postFetched = true;
-            state.posts = action.payload.post
+            state.posts = action.payload.post.reverse()
         })       
         .addCase(getAllPosts.rejected, (state,action)=>{
             state.isLoading = false;

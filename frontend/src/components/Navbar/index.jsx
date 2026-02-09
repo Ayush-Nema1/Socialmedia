@@ -12,7 +12,7 @@ function Navbar() {
   return (
     <div className={styles.container}>
       <nav className={styles.navBar}>
-        <h1
+        <h1 className={styles.h}
           onClick={() => {
             router.push("/");
           }}

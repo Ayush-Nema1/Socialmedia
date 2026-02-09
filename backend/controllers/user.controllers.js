@@ -7,25 +7,41 @@ import fs from "fs";
 import ConnectionRequest from "../models/connections.model.js";
 import Post from "../models/posts.model.js";
 import Comment from "../models/comments.model.js";
+import path from "path";
+
 
 const convertUserDataToPDF = (userData) => {
   const doc = new pdfDocument();
   const outputPath = crypto.randomBytes(32).toString("hex") + ".pdf";
   const stream = fs.createWriteStream("uploads/" + outputPath);
   doc.pipe(stream);
-  doc.image(`${userData.userId.profilePicture}`, {
-    align: "center",
-    width: "100",
-  });
+ const imagePath = path.join(
+    process.cwd(),
+    "uploads",
+    userData.userId.profilePicture
+  );
+
+  if (fs.existsSync(imagePath)) {
+    doc.image(imagePath, {
+      align: "center",
+      width: 100,
+    });
+  }
+  doc.moveDown(2);
   doc.fontSize(14).text(`Name:${userData.userId.name}`);
-  doc.fontSize(14).text(`Email:${userData.userId.username}`);
-  doc.fontSize(14).text(`Bio:${userData.userId.email}`);
+  doc.fontSize(14).text(`Email:${userData.userId.email}`);
+  doc.fontSize(14).text(`Bio:${userData.userId.bio}`);
   doc.fontSize(14).text(`Current Positions: ${userData.currentPosition}`);
   doc.fontSize(14).text("Past Work: ");
   userData.pastWork.forEach((work, index) => {
     doc.fontSize(14).text(`Comapny name : ${work.company}`);
     doc.fontSize(14).text(`Position: ${work.position}`);
     doc.fontSize(14).text(`Years: ${work.years}`);
+  });
+  userData?.education?.forEach((work, index) => {
+    doc.fontSize(14).text(`School name : ${work.school}`);
+    doc.fontSize(14).text(`degree: ${work.degree}`);
+    doc.fontSize(14).text(`fieldOfStudy: ${work.fieldOfStudy}`);
   });
   doc.end();
   return outputPath;
@@ -139,8 +155,11 @@ export const updateUserProfile = async (req, res) => {
       }
     }
 
-   
-    Object.assign(user, newUserData);
+   Object.keys(newUserData).forEach((key) => {
+  if (newUserData[key] !== undefined && newUserData[key] !== null) {
+    user[key] = newUserData[key];
+  }
+});
     await user.save();
 
     return res.json({ message: "userUpdated" });
@@ -186,7 +205,15 @@ export const updateProfileData = async (req, res) => {
     console.log(profile_to_update)
 console.log("BODY:", newProfileData);
 
-    Object.assign(profile_to_update, newProfileData);
+    Object.keys(newProfileData).forEach((key) => {
+  if (
+    newProfileData[key] !== undefined &&
+    newProfileData[key] !== null
+  ) {
+    profile_to_update[key] = newProfileData[key];
+  }
+});
+
     await profile_to_update.save();
     return res.json({ message: "Profile saved ccessfully" });
   } catch (error) {

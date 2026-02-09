@@ -122,3 +122,59 @@
     font-family: 'Lucida Sans';
    
 }
+.addWorkbtn{
+  border-style: 1px dotted silver;
+  padding-inline: 1.3rem;
+  background: white;
+  padding-block: 1.2rem;
+  border-radius:10px ;
+  cursor: pointer;
+}
+.addWorkbtn:hover{
+   background-color: rgba(104, 104, 104, 0.905);
+   color: rgb(255, 255, 255);
+}
+.commentsContainer{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top : 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    
+}
+.allcomments{
+    width: 40vw;
+    height: fit-content;
+    background: white;
+    border-radius: 10px ;
+    position: relative;
+    padding: 1.4rem;
+    z-index: 10;
+}
+
+.row1 {
+  width: 90%;
+  padding: 11px 12px;
+  border-radius: 6px;
+  border: 1px solid #dcdcdc;
+  font-size: 14px;
+  outline: none;
+  margin-bottom: 1.1rem;
+}
+.connetbtn{
+    padding-inline :0.8rem;
+    padding-block:0.3rem ;
+    background: rgba(3,93,183,0.905);
+    outline:none;
+    border:none;
+    color:white;
+    border-radius: 10px;;
+    cursor: pointer;
+   
+}
