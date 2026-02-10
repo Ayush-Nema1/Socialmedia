@@ -22,11 +22,11 @@ app.use(userRoutes);
 app.use("/uploads", express.static("uploads"));
 
 
-
+const PORT = process.env.PORT || 9000; 
 const start = async()=>{
     const connectDB  = await mongoose.connect("mongodb+srv://nemaayush22_db_user:asdfghjkl@socailmediareplica.5itzp4q.mongodb.net/?appName=socailmediareplica");
 
-    app.listen(9000,()=>{
+    app.listen(PORT,()=>{
         console.log("server is running on port 90000");
     })
 }
