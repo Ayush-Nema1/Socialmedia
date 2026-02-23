@@ -15,7 +15,7 @@ import {
   getUserbyusername
 } from "../controllers/user.controllers.js";
 
-import upload from "../middleware/upload.middleware.js";
+import { uploadProfile } from "../middleware/upload.middleware.js";
 
 const router = Router();
 
