@@ -31,7 +31,7 @@ const convertUserDataToPDF = (userData) => {
   doc.fontSize(14).text(`Name:${userData.userId.name}`);
   doc.fontSize(14).text(`Email:${userData.userId.email}`);
   doc.fontSize(14).text(`Bio:${userData.userId.bio}`);
-  doc.fontSize(14).text(`Current Positions: ${userData.currentPosition}`);
+  
   doc.fontSize(14).text("Past Work: ");
   userData.pastWork.forEach((work, index) => {
     doc.fontSize(14).text(`Comapny name : ${work.company}`);
@@ -97,7 +97,7 @@ export const uploadProfilePicture = async (req, res) => {
     const user = await User.findOne({ token: token });
     if (!user) return res.status(404).json({ message: "User not found" });
 
-    user.profilePicture = req.file.filename;
+   user.profilePicture = req.file.path;
     await user.save();
     return res.json({ message: "profile picture updated" });
   } catch (error) {
