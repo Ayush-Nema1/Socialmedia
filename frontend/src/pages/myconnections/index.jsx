@@ -76,7 +76,7 @@ export default function Myconnection() {
              <div style={{display:"flex" , alignItems: "center",gap:"1.2rem",justifyContent:"space-between"}}>
              <div className={styles.profilepicture}>
                {console.log(user.userId.profilePicture)}
-              <img src={`${base_URL}/uploads/${user.userId.profilePicture}`} alt="img" />
+              <img src={user.userId.profilePicture} />
            </div>
              <div className={styles.userInfo} >
                <h3>{user.userId.name} </h3>

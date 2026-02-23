@@ -108,10 +108,7 @@ export default function Profilepage() {
                 onChange={(e) => updateprofilepicture(e.target.files[0])}
               />
 
-              <img
-                src={`${base_URL}/uploads/${userProfile?.userId?.profilePicture}`}
-                alt=""
-              />
+<img src={userProfile?.userId?.profilePicture} />
             </div>
 
             {/* ===== PROFILE DETAILS ===== */}

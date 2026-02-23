@@ -71,7 +71,7 @@ if(authState.connectionRequest.some(user=>user.userId._id === userProfile.userId
       <DashboardLayout>   
         <div className={styles.userProifileContainer}>
          <div className={styles.backDropContainer}>
-          <img src={`${base_URL}/uploads/${userProfile.userId.profilePicture}`} alt="" />
+          <img src={userProfile?.userId?.profilePicture} />
          </div>
 
          <div className={styles.profileContainer_details}>
