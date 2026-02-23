@@ -19,7 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(postRoutes);
 app.use(userRoutes);
-app.use("/uploads", express.static("uploads"));
+// app.use("/uploads", express.static("uploads"));
 
 
 const PORT = process.env.PORT || 9000; 

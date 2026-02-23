@@ -1,24 +1,37 @@
-import {Router} from "express";
-import multer from "multer";
-import { commentPost, createPost, delete_comment_of_user, deletePost, get_comment_by_post, getAllPosts, increment_like } from "../controllers/posts.controllers.js";
+import { Router } from "express";
+import {
+  commentPost,
+  createPost,
+  delete_comment_of_user,
+  deletePost,
+  get_comment_by_post,
+  getAllPosts,
+  increment_like
+} from "../controllers/posts.controllers.js";
+
+import { uploadPost } from "../middleware/upload.middleware.js";
 
 const router = Router();
 
-const storage = multer.diskStorage({
-    destination:(req,file,cb)=>{
-        cb(null,'uploads')
-    },
-    filename:(req,file,cb)=>{
-        cb(null,file.originalname);
-    },
-})
-const upload = multer({storage:storage});
+/* ================= CREATE POST ================= */
+router.post(
+  "/posts",
+  uploadPost.single("media"),   // 👈 Cloudinary upload
+  createPost
+);
 
-router.route('/posts').post(upload.single('media'),createPost);
-router.route('/posts').get(getAllPosts);
-router.route('/delete_post').delete(deletePost);
-router.route('/comment').post(commentPost)
-router.route('/get_comments').get(get_comment_by_post);
-router.route('/delete_comment').post(delete_comment_of_user)
-router.route('/like').post(increment_like);
+/* ================= GET POSTS ================= */
+router.get("/posts", getAllPosts);
+
+/* ================= DELETE POST ================= */
+router.delete("/delete_post", deletePost);
+
+/* ================= COMMENTS ================= */
+router.post("/comment", commentPost);
+router.get("/get_comments", get_comment_by_post);
+router.post("/delete_comment", delete_comment_of_user);
+
+/* ================= LIKE ================= */
+router.post("/like", increment_like);
+
 export default router;

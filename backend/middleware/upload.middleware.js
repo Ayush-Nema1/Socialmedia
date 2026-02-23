@@ -2,7 +2,7 @@ import multer from "multer";
 import { CloudinaryStorage } from "multer-storage-cloudinary";
 import cloudinary from "../config/cloudinary.js";
 
-const storage = new CloudinaryStorage({
+const profileStorage = new CloudinaryStorage({
   cloudinary,
   params: {
     folder: "profile_pictures",
@@ -10,6 +10,13 @@ const storage = new CloudinaryStorage({
   },
 });
 
-const upload = multer({ storage });
+const postStorage = new CloudinaryStorage({
+  cloudinary,
+  params: {
+    folder: "post_media",
+    allowed_formats: ["jpg", "png", "jpeg"],
+  },
+});
 
-export default upload;
+export const uploadProfile = multer({ storage: profileStorage });
+export const uploadPost = multer({ storage: postStorage });

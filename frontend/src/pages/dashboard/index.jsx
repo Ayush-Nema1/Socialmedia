@@ -149,7 +149,7 @@ function DashBoard() {
                         <p style={{ paddingTop: "1.3rem" }}>{post.body}</p>
                         <div className={styles.singlecardimg}>
                           <img
-                            src={`${base_URL}/uploads/${post.media}`}
+                           src={post.media}
                             alt=""
                           />
                         </div>
