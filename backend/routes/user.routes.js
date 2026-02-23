@@ -15,14 +15,14 @@ import {
   getUserbyusername
 } from "../controllers/user.controllers.js";
 
-import {upload} from "../middleware/upload.middleware.js";
+import { uploadProfile } from "../middleware/upload.middleware.js";
 
 const router = Router();
 
 // Cloudinary upload middleware
 router.post(
   "/update_profile_picture",
-  upload.single("profile_picture"),
+uploadProfile.single("profile_picture"),
   uploadProfilePicture
 );
 
