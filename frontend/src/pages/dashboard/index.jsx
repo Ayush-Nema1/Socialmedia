@@ -100,7 +100,7 @@ function DashBoard() {
                     <div className={styles.singlecardprofile}>
                       <img
                         className={styles.profileimg}
-                        src={`${base_URL}/uploads/${post.userId.profilePicture}`}
+                        src={user.userId.profilePicture}
                         alt=""
                       />
                       <div>
