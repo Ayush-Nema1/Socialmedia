@@ -52,7 +52,7 @@ function DashBoard() {
             <div className={styles.createpostContainer}>
               <img
                 className={styles.userprofile}
-                src={`${base_URL}/uploads/${authState.user.userId.profilePicture}`}
+                src={authState.user.userId.profilePicture}
                 alt=""
               />
               <textarea
