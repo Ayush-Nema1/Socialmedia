@@ -24,11 +24,16 @@ app.use(userRoutes);
 
 const PORT = process.env.PORT || 9000; 
 const start = async()=>{
+    try{
     const connectDB  = await mongoose.connect("mongodb+srv://nemaayush22_db_user:asdfghjkl@socailmediareplica.5itzp4q.mongodb.net/?appName=socailmediareplica");
 
     app.listen(PORT,()=>{
         console.log("server is running on port 90000");
-    })
+    })}
+     catch (error) {
+    console.log("DB CONNECTION FAILED");
+    console.error(error);
+     }
 }
 start();
 // mongodb+srv://nemaayush22_db_user:<db_password>@socailmediareplica.5itzp4q.mongodb.net/?appName=socailmediareplica
