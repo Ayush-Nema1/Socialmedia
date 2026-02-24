@@ -95,7 +95,7 @@ if(authState.connectionRequest.some(user=>user.userId._id === userProfile.userId
 
             <div style={{cursor:"pointer"}}    onClick = {async()=>{
               const response = await clientServer.get(`/user/dowmload_resume?id=${userProfile.userId._id}`);
-             window.open(`${base_URL}/uploads/${response.data.message}`, "_blank");
+            window.open(`${base_URL}/user/dowmload_resume?id=${userProfile.userId._id}`, "_blank");
 
             }}>
               
