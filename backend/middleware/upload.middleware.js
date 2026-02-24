@@ -4,17 +4,21 @@ import cloudinary from "../config/cloudinary.js";
 
 const profileStorage = new CloudinaryStorage({
   cloudinary,
-  params: {
-    folder: "profile_pictures",
-    allowed_formats: ["jpg", "png", "jpeg"],
+  params: async (req, file) => {
+    return {
+      folder: "profile_pictures",
+      format: file.mimetype.split("/")[1], 
+    };
   },
 });
 
 const postStorage = new CloudinaryStorage({
   cloudinary,
-  params: {
-    folder: "post_media",
-    allowed_formats: ["jpg", "png", "jpeg"],
+  params: async (req, file) => {
+    return {
+      folder: "post_media",
+      format: file.mimetype.split("/")[1],
+    };
   },
 });
 
