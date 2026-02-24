@@ -47,7 +47,7 @@ export default function Myconnection() {
               {console.log(user.userId.profilePicture)}
 
               
-              <img src={`${base_URL}/uploads/${user.userId.profilePicture}`} alt="img" />
+              <img src={user.userId.profilePicture} alt="img" />
            </div>
              <div className={styles.userInfo} >
                <h3>{user.userId.name} </h3>
