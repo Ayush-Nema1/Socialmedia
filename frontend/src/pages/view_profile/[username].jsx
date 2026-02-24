@@ -117,7 +117,7 @@ if(authState.connectionRequest.some(user=>user.userId._id === userProfile.userId
                     <div className={styles.card}>
                       <div className={styles.card_profilecontainer}>
 {post.media 
- ? <img src={`${base_URL}/uploads/${post.media}`} />
+ ? <img src={post.media} />
  : <div style={{width:"3.4rem",height:"3.4rem"}}></div>
 }
                       </div>
