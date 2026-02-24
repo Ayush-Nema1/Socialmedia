@@ -4,7 +4,7 @@ import crypto from "crypto";
 import bcrypt from "bcrypt";
 import pdfDocument from "pdfkit";
 import ConnectionRequest from "../models/connections.model.js";
-import fetch from "node-fetch";
+// import fetch from "node-fetch";
 
 /* ================= REGISTER ================= */
 
